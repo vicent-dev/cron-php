@@ -7,10 +7,10 @@ Some things to have in mind:
 - The folder structure is made in a fake scenario with only one context as we have. In case of more contexts in the application, they must be between `src/` and layers folders.
 
 ## Dependencies 📚
-- `leage/tactician`: command/query buses (CQRS implementation)
-- `pimple/pimple`: service provider
-- `vlucas/phpdotenv`: getting vars from .env file
-- `phpunit/phpunit`: unit tests for application/domain layer
+- `leage/tactician`: command/query buses (CQRS implementation).
+- `pimple/pimple`: service provider.
+- `vlucas/phpdotenv`: getting vars from .env file.
+- `phpunit/phpunit`: unit tests for application/domain layer.
 
 
 ## Installation and execution 🏗
