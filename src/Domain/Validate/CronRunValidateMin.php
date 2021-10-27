@@ -7,12 +7,11 @@ use DateTime;
 
 final class CronRunValidateMin implements CronRunValidateInteraface
 {
-    function isValid(Cron $cron, DateTime $time): bool
+    function isValid(Cron $cron, DateTime $time, bool $previous = true): bool
     {
         if (null === $cron->min()) {
-            return true;
+            return $previous;
         }
-
         return $cron->min() === (int)$time->format('i');
     }
 }

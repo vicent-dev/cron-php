@@ -7,10 +7,10 @@ use DateTime;
 
 final class CronRunValidateDayOfMonth implements CronRunValidateInteraface
 {
-    function isValid(Cron $cron, DateTime $time): bool
+    function isValid(Cron $cron, DateTime $time, bool $previous = true): bool
     {
         if (null === $cron->dayOfMonth()) {
-            return true;
+            return $previous;
         }
 
         return $cron->dayOfMonth() === (int)$time->format('d');

@@ -14,15 +14,12 @@ final class CronRunValidateChain implements CronRunValidateInteraface
         $this->validators = $validators;
     }
 
-    function isValid(Cron $cron, DateTime $time): bool
+    function isValid(Cron $cron, DateTime $time, bool $previous = true): bool
     {
         $valid = true;
 
         foreach ($this->validators as $validator) {
-            if (!$validator->isValid($cron, $time)) {
-                $valid = false;
-                break;
-            }
+            $valid = $validator->isValid($cron, $time, $valid);
         }
 
         return $valid;

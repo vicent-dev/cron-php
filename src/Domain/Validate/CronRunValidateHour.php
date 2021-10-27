@@ -7,10 +7,10 @@ use DateTime;
 
 final class CronRunValidateHour implements CronRunValidateInteraface
 {
-    function isValid(Cron $cron, DateTime $time): bool
+    function isValid(Cron $cron, DateTime $time, bool $previous = true): bool
     {
         if (null === $cron->hour()) {
-            return true;
+            return $previous;
         }
 
         return $cron->hour() === (int)$time->format('h');
