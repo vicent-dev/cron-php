@@ -9,7 +9,6 @@ final class CronRunnerService implements CronRunnerServiceInterface
 {
     function execute(Cron $cron): void
     {
-        //shell_exec(sprintf('sudo -u  %s %s', $cron->user(), $cron->command()));
-        $output = shell_exec($cron->command());
+        shell_exec($cron->command());
     }
 }

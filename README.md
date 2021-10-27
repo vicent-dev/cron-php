@@ -23,7 +23,7 @@ The program only expects one parameter or none. Execute the program with `-e` pa
 the config file with the configured editor in the `.env` file. Without any parameter it will be runed as 
 a normal executable file. 
 
-In a real world sceneario it should be configured with a daemon manager like systemd or runit.
+In a real world sceneario it should be configured with a "daemon manager" like systemd or runit.
 
 ## Tests 🧪
 For running unit tests:

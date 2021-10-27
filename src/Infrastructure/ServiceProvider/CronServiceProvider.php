@@ -31,11 +31,30 @@ final class CronServiceProvider
         $this->container = $container;
     }
 
+    public function get(string $service)
+    {
+        if (!isset($this->container[$service])) {
+            throw ServiceNotFoundException::create($service);
+        }
+
+        return $this->container[$service];
+    }
+
     public static function create(): self
     {
         $container = new Container();
         self::initServices($container);
         return new self($container);
+    }
+
+    private static function initServices(Container $container): void
+    {
+        self::initEnvVars($container);
+        self::initInfraServices($container);
+        self::initDomainServices($container);
+        self::initUseCases($container);
+        self::initBuses($container);
+        self::initEntryPoints($container);
     }
 
     private static function initInfraServices(Container $container): void
@@ -121,25 +140,5 @@ final class CronServiceProvider
     {
         $container['cron_file_path'] = $_ENV['CONFIG_FILE_PATH'];
         $container['text_editor'] = $_ENV['TEXT_EDITOR_CONFIG_FILE'];
-    }
-
-
-    public function get(string $service)
-    {
-        if (!isset($this->container[$service])) {
-            throw ServiceNotFoundException::create($service);
-        }
-
-        return $this->container[$service];
-    }
-
-    private static function initServices(Container $container): void
-    {
-        self::initEnvVars($container);
-        self::initInfraServices($container);
-        self::initDomainServices($container);
-        self::initUseCases($container);
-        self::initBuses($container);
-        self::initEntryPoints($container);
     }
 }
