@@ -21,10 +21,17 @@ final class FileCronRepository implements CronRepositoryInterface
 
         $fh = fopen($this->filePath, 'rb');
 
+        if(!$fh) {
+            file_put_contents($this->filePath, '');
+            fclose($fh);
+        }
+
+        $fh = fopen($this->filePath, 'rb');
+
         while ($line = fgets($fh)) {
             $parsed = explode(' ', $line);
             for($i = 0; $i < 5; $i++) {
-                $parsed[$i] = $parsed[$i] === '*' ? null : (int)$parsed[$i];
+                $parsed[$i] = !is_int($parsed[$i]) ? null : $parsed[$i];
             }
             $cronCollection->add(Cron::create(...$parsed));
         }

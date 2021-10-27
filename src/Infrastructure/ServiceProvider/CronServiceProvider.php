@@ -139,6 +139,6 @@ final class CronServiceProvider
     private static function initEnvVars(Container $container): void
     {
         $container['cron_file_path'] = $_ENV['CONFIG_FILE_PATH'];
-        $container['text_editor'] = $_ENV['TEXT_EDITOR_CONFIG_FILE'];
+        $container['text_editor'] = $_ENV['EDITOR_CONFIG_FILE'];
     }
 }
