@@ -4,6 +4,7 @@ namespace Cron\Tests\Application\Run;
 
 use Cron\Application\Run\RunCronCommand;
 use Cron\Application\Run\RunCronCommandHandler;
+use Cron\Domain\Cron;
 use Cron\Domain\CronRunnerServiceInterface;
 use Cron\Domain\Validate\CronRunValidateChain;
 use Cron\Domain\Validate\CronRunValidateDayOfMonth;
@@ -39,7 +40,8 @@ final class RunCronCommandHandlerTest extends TestCase
     public function cronRunned()
     {
         $handler = new RunCronCommandHandler($this->runnerService, $this->validatorService);
-        $handler->handle(new RunCronCommand());
+        $handler->handle(new RunCronCommand(Cron::create(null, null, null, null, null, 'ls'),
+        new \DateTime('2021-01-01 00:00:00')));
 
         self::assertTrue($this->runnerService->executed());
     }
@@ -48,7 +50,8 @@ final class RunCronCommandHandlerTest extends TestCase
     public function cronNotRunned()
     {
         $handler = new RunCronCommandHandler($this->runnerService, $this->validatorService);
-        $handler->handle(new RunCronCommand());
+        $handler->handle(new RunCronCommand(Cron::create(1, null, null, null, null, 'ls'),
+            new \DateTime('2021-01-01 00:00:00')));
 
         self::assertFalse($this->runnerService->executed());
     }

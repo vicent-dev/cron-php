@@ -9,6 +9,10 @@ final class CronRunValidateHour implements CronRunValidateInteraface
 {
     function isValid(Cron $cron, DateTime $time): bool
     {
-        return true;
+        if (null === $cron->hour()) {
+            return true;
+        }
+
+        return $cron->hour() === (int)$time->format('h');
     }
 }

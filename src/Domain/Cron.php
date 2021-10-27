@@ -2,8 +2,6 @@
 
 namespace Cron\Domain;
 
-use DateTime;
-
 final class Cron
 {
     private ?int $min, $hour, $dayOfMonth, $month, $dayOfWeek;

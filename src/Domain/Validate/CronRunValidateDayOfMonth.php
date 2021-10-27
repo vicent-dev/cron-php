@@ -9,6 +9,10 @@ final class CronRunValidateDayOfMonth implements CronRunValidateInteraface
 {
     function isValid(Cron $cron, DateTime $time): bool
     {
-        return true;
+        if (null === $cron->dayOfMonth()) {
+            return true;
+        }
+
+        return $cron->dayOfMonth() === (int)$time->format('d');
     }
 }

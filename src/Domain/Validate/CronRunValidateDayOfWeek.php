@@ -9,6 +9,10 @@ final class CronRunValidateDayOfWeek implements CronRunValidateInteraface
 {
     function isValid(Cron $cron, DateTime $time): bool
     {
-        return true;
+        if (null === $cron->dayOfWeek()) {
+            return true;
+        }
+
+        return $cron->dayOfWeek() === (int)$time->format('w');
     }
 }

@@ -9,6 +9,10 @@ final class CronRunValidateMin implements CronRunValidateInteraface
 {
     function isValid(Cron $cron, DateTime $time): bool
     {
-        return true;
+        if (null === $cron->min()) {
+            return true;
+        }
+
+        return $cron->min() === (int)$time->format('i');
     }
 }

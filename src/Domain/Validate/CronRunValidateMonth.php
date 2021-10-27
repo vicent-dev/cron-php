@@ -7,9 +7,12 @@ use DateTime;
 
 final class CronRunValidateMonth implements CronRunValidateInteraface
 {
-
     function isValid(Cron $cron, DateTime $time): bool
     {
-        return true;
+        if (null === $cron->month()) {
+            return true;
+        }
+
+        return $cron->month() === (int)$time->format('m');
     }
 }
