@@ -1,0 +1,5 @@
+.env
+.tmp/crontab
+composer.lock
+vendor/
+.idea/
