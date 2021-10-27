@@ -3,7 +3,7 @@
 This project has been made having in mind the structure
 of backend with high scalability and maintainability.
 Some things to have in mind:
-- The project is made using pure php without framework becuase we don't need anything specially from them.
+- The project is made using pure php without framework, becuase we don't need anything specially from them.
 - The folder structure is made in a fake scenario with only one context as we have. In case of more contexts in the application, they must be between `src/` and layers folders.
 
 ## Dependencies 📚
