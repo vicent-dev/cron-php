@@ -5,7 +5,7 @@ namespace Cron\Application\Get;
 use Cron\Domain\CronCollection;
 use Cron\Domain\CronRepositoryInterface;
 
-final class GetAllCronsCommandHandler
+final class GetAllCronsQueryHandler
 {
     private CronRepositoryInterface $repository;
 
@@ -14,7 +14,7 @@ final class GetAllCronsCommandHandler
         $this->repository = $repository;
     }
 
-    public function handle(GetAllCronsCommand $command): CronCollection
+    public function handle(GetAllCronsQuery $command): CronCollection
     {
         return $this->repository->findAll();
     }

@@ -4,8 +4,8 @@ namespace Cron\Infrastructure\ServiceProvider;
 
 use Cron\Application\Edit\EditCronsCommand;
 use Cron\Application\Edit\EditCronsCommandHandler;
-use Cron\Application\Get\GetAllCronsCommand;
-use Cron\Application\Get\GetAllCronsCommandHandler;
+use Cron\Application\Get\GetAllCronsQuery;
+use Cron\Application\Get\GetAllCronsQueryHandler;
 use Cron\Application\Run\RunCronCommand;
 use Cron\Application\Run\RunCronCommandHandler;
 use Cron\Infrastructure\Console\EditConfigConsoleCommand;
@@ -61,7 +61,7 @@ final class CronServiceProvider
 
         //use cases
         $container['cron_get_all_handler'] = function ($c) {
-            return new GetAllCronsCommandHandler($c['cron_file_repository']);
+            return new GetAllCronsQueryHandler($c['cron_file_repository']);
         };
         $container['cron_run_handler'] = function ($c) {
             return new RunCronCommandHandler($c['cron_runner_service']);
@@ -73,7 +73,7 @@ final class CronServiceProvider
         //command / query bus
         $container['query_bus'] = function ($c) {
             return QuickStart::create([
-                GetAllCronsCommand::class => $c['cron_get_all_handler'],
+                GetAllCronsQuery::class => $c['cron_get_all_handler'],
             ]);
         };
         $container['command_bus'] = function ($c) {

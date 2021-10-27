@@ -2,7 +2,7 @@
 
 namespace Cron\Infrastructure\Console;
 
-use Cron\Application\Get\GetAllCronsCommand;
+use Cron\Application\Get\GetAllCronsQuery;
 use Cron\Application\Run\RunCronCommand;
 use DateTime;
 use League\Tactician\CommandBus;
@@ -20,7 +20,7 @@ final class MainLoopConsoleCommand
 
     public function __invoke()
     {
-        $crons = $this->queryBus->handle(new GetAllCronsCommand());
+        $crons = $this->queryBus->handle(new GetAllCronsQuery());
 
         while(true) {
             $now = new DateTime();

@@ -2,6 +2,6 @@
 
 namespace Cron\Application\Get;
 
-final class GetAllCronsCommand
+final class GetAllCronsQuery
 {
 }
