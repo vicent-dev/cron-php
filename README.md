@@ -2,7 +2,7 @@
 
 This project has been made having in mind the structure
 of backend with high scalability and maintainability.
-Some things to have in mind:
+Implementation details:
 - The project is made using pure php without framework, becuase we don't need anything specially from them.
 - The folder structure is made in a fake scenario with only one context as we have. In case of more contexts in the application, they must be between `src/` and layers folders.
 
@@ -16,14 +16,14 @@ Some things to have in mind:
 ## Installation and execution 🏗
 
 Just run `make install` for installing dependencies. You can change anything from  generated `.env`.
-Run executing the entry file `cron.php` located in the root folder of the project.
+Run the program executing the entry file `cron.php` located in the root folder of the project.
 
 
-The program only expects one parameter or none. Execute the program with `-e` parameter and it will open 
+The program only expects one parameter or none. Execute the program with `-e` parameter, and it will open 
 the config file with the configured editor in the `.env` file. Without any parameter it will be runed as 
 a normal executable file. 
 
-In a real world sceneario it should be configured with a "daemon manager" like systemd or runit.
+In a real-world-sceneario it should be configured with a "daemon manager" like systemd or runit.
 
 ## Tests 🧪
 For running unit tests:
