@@ -47,10 +47,60 @@ final class RunCronCommandHandlerTest extends TestCase
     }
 
     /** * @test */
-    public function cronNotRunned()
+    public function cronRunnedNotEmpty()
+    {
+        $handler = new RunCronCommandHandler($this->runnerService, $this->validatorService);
+        $handler->handle(new RunCronCommand(Cron::create(1, 1, 1, 1, null, 'ls'),
+            new \DateTime('2021-01-01 01:01:00')));
+
+        self::assertTrue($this->runnerService->executed());
+    }
+
+    /** * @test */
+    public function cronNotRunnedMin()
     {
         $handler = new RunCronCommandHandler($this->runnerService, $this->validatorService);
         $handler->handle(new RunCronCommand(Cron::create(1, null, null, null, null, 'ls'),
+            new \DateTime('2021-01-01 00:00:00')));
+
+        self::assertFalse($this->runnerService->executed());
+    }
+
+    /** * @test */
+    public function cronNotRunnedHour()
+    {
+        $handler = new RunCronCommandHandler($this->runnerService, $this->validatorService);
+        $handler->handle(new RunCronCommand(Cron::create(null, 1, null, null, null, 'ls'),
+            new \DateTime('2021-01-01 00:00:00')));
+
+        self::assertFalse($this->runnerService->executed());
+    }
+
+    /** * @test */
+    public function cronNotRunnedDayOfMonth()
+    {
+        $handler = new RunCronCommandHandler($this->runnerService, $this->validatorService);
+        $handler->handle(new RunCronCommand(Cron::create(null, null, 2, null, null, 'ls'),
+            new \DateTime('2021-01-01 00:00:00')));
+
+        self::assertFalse($this->runnerService->executed());
+    }
+
+    /** * @test */
+    public function cronNotRunnedMonth()
+    {
+        $handler = new RunCronCommandHandler($this->runnerService, $this->validatorService);
+        $handler->handle(new RunCronCommand(Cron::create(null, null, null, 3, null, 'ls'),
+            new \DateTime('2021-01-01 00:00:00')));
+
+        self::assertFalse($this->runnerService->executed());
+    }
+
+    /** * @test */
+    public function cronNotRunnedDayOfWeek()
+    {
+        $handler = new RunCronCommandHandler($this->runnerService, $this->validatorService);
+        $handler->handle(new RunCronCommand(Cron::create(null, null, null, null, 2, 'ls'),
             new \DateTime('2021-01-01 00:00:00')));
 
         self::assertFalse($this->runnerService->executed());
