@@ -7,7 +7,7 @@ use Cron\Application\Run\RunCronCommand;
 use DateTime;
 use League\Tactician\CommandBus;
 
-final class MainLoopCommand
+final class MainLoopConsoleCommand
 {
     private CommandBus $queryBus;
     private CommandBus $commandBus;
@@ -26,7 +26,6 @@ final class MainLoopCommand
             $now = new DateTime();
 
             foreach ($crons as $cron) {
-                var_dump($cron);
                 $this->commandBus->handle(new RunCronCommand($cron, $now));
             }
 

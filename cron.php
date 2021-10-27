@@ -15,7 +15,7 @@ if(count($argv) === 1) {
 }
 
 if(isset($argv[1]) && $argv[1] === '-e') {
-    $serviceProvider->get('edit_config_console_command')();
+    $serviceProvider->get('crons_edit_command')();
     return;
 }
 
