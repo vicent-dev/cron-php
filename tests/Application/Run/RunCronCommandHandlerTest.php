@@ -36,6 +36,7 @@ final class RunCronCommandHandlerTest extends TestCase
         parent::setUp();
     }
 
+
     /** * @test */
     public function cronRunned()
     {
@@ -51,6 +52,16 @@ final class RunCronCommandHandlerTest extends TestCase
     {
         $handler = new RunCronCommandHandler($this->runnerService, $this->validatorService);
         $handler->handle(new RunCronCommand(Cron::create(1, 1, 1, 1, null, 'ls'),
+            new \DateTime('2021-01-01 01:01:00')));
+
+        self::assertTrue($this->runnerService->executed());
+    }
+
+    /** * @test */
+    public function cronRunnedNotEmptyNullMin()
+    {
+        $handler = new RunCronCommandHandler($this->runnerService, $this->validatorService);
+        $handler->handle(new RunCronCommand(Cron::create(null, 1, 1, 1, null, 'ls'),
             new \DateTime('2021-01-01 01:01:00')));
 
         self::assertTrue($this->runnerService->executed());
