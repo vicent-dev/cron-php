@@ -25,20 +25,33 @@ final class Cron
         return new self($min, $hour, $dayOfMonth, $month, $dayOfWeek, $command);
     }
 
-    public function mustRun(DateTime $dateTime): bool
-    {
-        $run = true;
-
-        return $run;
-    }
-
     public function command(): string
     {
         return $this->command;
     }
 
-    public function user(): string
+    public function min(): ?int
     {
-        return $this->user;
+        return $this->min;
+    }
+
+    public function hour(): ?int
+    {
+        return $this->hour;
+    }
+
+    public function dayOfMonth(): ?int
+    {
+        return $this->dayOfMonth;
+    }
+
+    public function month(): ?int
+    {
+        return $this->month;
+    }
+
+    public function dayOfWeek(): ?int
+    {
+        return $this->dayOfWeek;
     }
 }
