@@ -15,7 +15,7 @@ Some things to have in mind:
 
 ## Installation and execution 🏗
 
-Just run `make install` for installing dependencies. Change anything from  generated `.env`.
+Just run `make install` for installing dependencies. You can change anything from  generated `.env`.
 Run executing the entry file `cron.php` located in the root folder of the project.
 
 
